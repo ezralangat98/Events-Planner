@@ -1,5 +1,7 @@
 package com.tracom.events.scheduler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -30,18 +32,30 @@ public class EventsScheduler {
 		Thread.sleep(1000l);
 	} **/
 
-	@Scheduled(initialDelay = 1000l,fixedDelayString = "PT1M")
+/**	@Scheduled(initialDelay = 1000l,fixedDelayString = "PT1M")
 	void PrintingDate() throws InterruptedException {
 		System.out.println("Today is " + new Date());
 		Thread.sleep(1000l);
+	} */
+
+
+/**	@Scheduled(initialDelay = 1000l, fixedDelayString = "${task.delay}") //go to app.properties file and add: task.delay=PT5S or PT5M or PT1H etc..
+	void PrintingDate() throws InterruptedException{
+		System.out.println("Today is " + new Date());
+		Thread.sleep(1000l);
+	} */
+    private static final Logger logger = LoggerFactory.getLogger(EventsScheduler.class);
+
+	@Scheduled(cron = "*/5 23  11 * * MON-FRI")                     //CRONTAB.GURU for more help
+	void PrintingDate() throws InterruptedException{
+		logger.info("Today is " + new Date());
+		Thread.sleep(1000l);
 	}
-
-
-//	@Scheduled(initialDelay = 1000l, fixedDelayString = "${task.delay}") //go to app.properties file and add: task.delay=PT5 or PT5M or PT1H etc..
-//	void PrintingDate() throws InterruptedException{
-//		System.out.println("Today is " + new Date());
-//		Thread.sleep(1000l);
-//	}
+	@Scheduled(cron = "*/5 23  11 * * MON-FRI")                     //spring.task.scheduling.pool.size=10
+	void PrintingDate2() throws InterruptedException{
+		logger.info("2nd Today is " + new Date());
+		Thread.sleep(1000l);
+	}
 
 	@Configuration
 	@EnableScheduling
