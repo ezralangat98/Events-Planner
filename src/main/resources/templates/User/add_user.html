@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SMS Version 1.0</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <h3>Add Users:- Enter Here</h3>
+
+    <br />
+    <br />
+
+    <form th:action="@{/create_user}" method="post" onSubmit="if(!confirm('Do you want to Save User?')){return false;}"
+          style="max-width: 600px; margin: 0 auto;"
+          th:object="${user}">
+        <div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">user Name:</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" th:field="*{user_name}" required/>
+                </div>
+            </div>
+
+            </div>
+            <div>
+                <div class="form-group row">
+                    <label class="col-form-label col-4">Password:</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control"  th:field="*{password}" required minlength="2" maxlength="20"  />
+                    </div>
+                </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Add User</button>
+            </div>
+            </div>
+    </form>
+</div>
+</body>
+</html>
