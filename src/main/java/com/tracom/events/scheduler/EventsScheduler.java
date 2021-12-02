@@ -17,10 +17,31 @@ public class EventsScheduler {
 		SpringApplication.run(EventsScheduler.class, args);
 	}
 
-	@Scheduled(fixedRate = 5000L)
-	void PrintingDate(){
+	/**
+	 @Scheduled(fixedRate = 9000L)
+	 void PrintingDate(){
+	 System.out.println("Today is " + new Date());
+	 }
+	 **/
+
+/**	@Scheduled(initialDelay = 1000l,fixedDelay = 2000L)
+	void PrintingDate() throws InterruptedException{
 		System.out.println("Today is " + new Date());
+		Thread.sleep(1000l);
+	} **/
+
+	@Scheduled(initialDelay = 1000l,fixedDelayString = "PT1M")
+	void PrintingDate() throws InterruptedException {
+		System.out.println("Today is " + new Date());
+		Thread.sleep(1000l);
 	}
+
+
+//	@Scheduled(initialDelay = 1000l, fixedDelayString = "${task.delay}") //go to app.properties file and add: task.delay=PT5 or PT5M or PT1H etc..
+//	void PrintingDate() throws InterruptedException{
+//		System.out.println("Today is " + new Date());
+//		Thread.sleep(1000l);
+//	}
 
 	@Configuration
 	@EnableScheduling
@@ -29,3 +50,4 @@ public class EventsScheduler {
 
 	}
 }
+
