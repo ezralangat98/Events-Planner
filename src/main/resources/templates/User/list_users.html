@@ -30,8 +30,6 @@
         <td th:text="${user.user_id}">User ID</td>
         <td th:text="${user.user_name}">E-mail</td>
         <td th:text="${user.password}">First Name</td>
-
-
         <td>
           <a th:href="@{'/edit_user/' + ${user.user_id}}"
              onclick="return confirm('Are you sure you want to edit the User details?')">
@@ -53,11 +51,7 @@
       </tbody>
     </table>
 
-
-
   </div>
-
-
 
 </div>
 <div align="center">
